@@ -57,10 +57,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func nodeAdded(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
         let referenceImage = imageAnchor.referenceImage
+        var color: UIColor = .red
+        switch referenceImage.name {
+        case "IMG_5141": color = .green
+        case "IMG_5142": color = .yellow
+        case "IMG_5143": color = .orange
+        case "IMG_5144": color = .blue
+        default: print("Detected image: \(referenceImage.name ?? "Unknown")")
+        }
         
         let plane = SCNPlane(width: referenceImage.physicalSize.width,
                              height: referenceImage.physicalSize.height)
-        plane.firstMaterial?.diffuse.contents = UIColor.blue
+        plane.firstMaterial?.diffuse.contents = color
         let planeNode = SCNNode(geometry: plane)
         planeNode.opacity = 0.50
         planeNode.eulerAngles.x = -Float.pi / 2

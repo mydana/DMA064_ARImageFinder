@@ -63,7 +63,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         plane.firstMaterial?.diffuse.contents = UIColor.blue
         let planeNode = SCNNode(geometry: plane)
         planeNode.opacity = 0.50
-        
+        planeNode.eulerAngles.x = -Float.pi / 2
         node.addChildNode(planeNode)
     }
 

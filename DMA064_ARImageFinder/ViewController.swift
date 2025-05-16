@@ -56,8 +56,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func nodeAdded(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
-        // Handle image detection
-        print("Image detected!")
+        let referenceImage = imageAnchor.referenceImage
+        
+        let plane = SCNPlane(width: referenceImage.physicalSize.width,
+                             height: referenceImage.physicalSize.height)
+        plane.firstMaterial?.diffuse.contents = UIColor.blue
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.opacity = 0.50
+        
+        node.addChildNode(planeNode)
     }
 
     func nodeAdded(_ node: SCNNode, for planeAnchor: ARPlaneAnchor) {
